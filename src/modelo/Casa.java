@@ -4,29 +4,27 @@
  */
 package modelo;
 
-/**
- *
- * @author USUARIO
- */
 public class Casa {
-    
-    private Personaje vive;
-
-    public Casa() {
+    private int numero;
+    private Personaje quienVive;
+ 
+    public Casa(int numero, Personaje quienVive) {
+        this.numero = numero;
+        this.quienVive = quienVive;
     }
-
-    public Casa(Personaje vive) {
-        this.vive = vive;
+ 
+    public int getNumero() { return numero; }
+    public void setNumero(int numero) { this.numero = numero; }
+    public Personaje getQuienVive() { return quienVive; }
+    public void setQuienVive(Personaje quienVive) { this.quienVive = quienVive; }
+ 
+    public void recibirVisita(Personaje visitante) {
+        System.out.println(visitante.getNombre() + " visita la casa #" + numero +
+            (quienVive != null ? " de " + quienVive.getNombre() : " (vacía)"));
     }
-
-    public Personaje getVive() {
-        return vive;
+ 
+    @Override
+    public String toString() {
+        return "Casa #" + numero + (quienVive != null ? " - " + quienVive.getNombre() : " - Vacía");
     }
-
-    public void setVive(Personaje vive) {
-        this.vive = vive;
-    }
-    
-    
-    
 }

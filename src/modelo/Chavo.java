@@ -4,50 +4,54 @@
  */
 package modelo;
 
-/**
- *
- * @author USUARIO
- */
 public class Chavo extends Personaje {
-    
     private int hambre;
-    private boolean llorando;
-    private boolean jugar;
-
-    public Chavo() {
-    }
-
-    public Chavo(int hambre, boolean llorando, boolean jugar, String nombre, int edad, String personalidad, String rol, double energia, String emocion) {
+    private boolean estaLlorando;
+    private boolean quiereJugar;
+ 
+    public Chavo(String nombre, int edad, String personalidad, String rol, int energia, int hambre, String emocion, boolean estaLlorando, boolean quiereJugar) {
         super(nombre, edad, personalidad, rol, energia, emocion);
         this.hambre = hambre;
-        this.llorando = llorando;
-        this.jugar = jugar;
+        this.estaLlorando = estaLlorando;
+        this.quiereJugar = quiereJugar;
     }
-
-    public int getHambre() {
-        return hambre;
+ 
+    public int getHambre() { return hambre; }
+    public void setHambre(int hambre) { this.hambre = hambre; }
+    public boolean getEstaLlorando() { return estaLlorando; }
+    public void setEstaLlorando(boolean estaLlorando) { this.estaLlorando = estaLlorando; }
+    public boolean getQuiereJugar() { return quiereJugar; }
+    public void setQuiereJugar(boolean quiereJugar) { this.quiereJugar = quiereJugar; }
+ 
+    @Override
+    public void hablar() {
+        System.out.println("¡Fue sin querer queriendo!");
     }
-
-    public void setHambre(int hambre) {
-        this.hambre = hambre;
+ 
+    @Override
+    public void realizarAccion() {
+        pedirTortaJamon();
     }
-
-    public boolean isLlorando() {
-        return llorando;
+ 
+    public void llorar() {
+        this.estaLlorando = true;
+        this.emocion = "Llorando";
+        System.out.println(nombre + " está llorando: ¡Buaaaa!");
     }
-
-    public void setLlorando(boolean llorando) {
-        this.llorando = llorando;
+ 
+    public void pedirTortaJamon() {
+        System.out.println(nombre + " pide: ¡Una torta de jamón!");
     }
-
-    public boolean isJugar() {
-        return jugar;
+ 
+    public void esconderseBanil() {
+        System.out.println(nombre + " se esconde en su barril.");
     }
-
-    public void setJugar(boolean jugar) {
-        this.jugar = jugar;
+ 
+    @Override
+    public void recibirGolpe() {
+        this.energia -= 10;
+        this.emocion = "Asustado";
+        llorar();
+        System.out.println(nombre + " recibió un golpe. Energía restante: " + energia);
     }
-    
-    
-    
 }
